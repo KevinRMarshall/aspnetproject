@@ -1,0 +1,95 @@
+﻿@model IEnumerable<OnlineGameStore.Models.Profile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfileDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FavouriteGameCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FavouritePlatform)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidOrFree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FavouriteGameCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FavouritePlatform)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidOrFree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthdate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.AspuserId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProfileId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProfileId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProfileId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

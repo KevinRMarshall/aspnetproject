@@ -1,0 +1,36 @@
+﻿@model IEnumerable<OnlineGameStore.Models.GameGenre>
+
+<div class="page" style="background: white;   margin-top: 25px; margin-bottom: 20px;">
+
+    <h2 style="color: black;" class="entry-title">&nbsp;@ViewBag.Title</h2>
+
+    @*<p>
+        &nbsp;
+        <a asp-action="Create">Add Game Genre</a>
+    </p>*@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Name)*@Genre
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.GameGenreId">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.GameGenreId">Delete</a>*@
+                        <a asp-action="ViewGames" asp-route-id="@item.GameGenreId">View Games</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,63 @@
+﻿@model OnlineGameStore.Models.Game
+
+<div class="page" style="background: white;   margin-top: 25px; margin-bottom: 20px;">
+    <div>
+
+        <hr />
+        <div class="col-sm-6 col-md-8">
+            <h2 class="entry-title">
+                @Html.DisplayFor(model => model.GameName)
+            </h2>
+
+            <small >
+               Price : @Html.DisplayFor(model => model.GamePrice)
+               
+            </small>
+            <small>
+              Discount :  @Html.DisplayFor(model => model.GameDiscount) %
+            </small>
+
+            <p>
+              Game Description :    @Html.DisplayFor(model => model.GameDescription)
+            </p>
+            <p>
+               DownloadLink : @Html.DisplayFor(model => model.GameDownloadLink)
+            </p>
+
+            <p>
+               Game Genre : @Html.DisplayFor(model => model.GameGenre.Name)
+            </p>
+        </div>
+    </div>
+    <div class="addtocart-bar">
+        @if (ViewBag.IsLoggedIn == "true")
+        {
+            @if (ViewBag.IsWishlisted == "false")
+            {
+                @using (Html.BeginForm("AddToWishList", "GameController", FormMethod.Post))
+                {
+                    <input type="submit" value="Add to Wishlist" asp-route-gameId="@Model.GameId" asp-action="AddToWishList" />
+                }
+            }
+            else
+            {
+                @using (Html.BeginForm("RemoveFromWishList", "GameController", FormMethod.Post))
+                {
+                    <input type="submit" value="Remove from Wishlist" asp-route-gameId="@Model.GameId" asp-action="RemoveFromWishList" />
+                }
+            }
+            <br />
+            @if (ViewBag.IsPurchased == "true")
+            {
+                <a href="@Model.GameDownloadLink">@Model.GameDownloadLink</a>
+            } 
+            else
+            {
+                <a asp-action="AddToCart" asp-controller="Cart" asp-route-gameId="@Model.GameId">Add to Cart</a>
+            }
+        }
+        <a href="javascript:history.back()">Back</a> |
+        @*<a asp-action="Edit" asp-route-id="@Model.GameId">Edit</a> |*@
+
+    </div>
+</div>

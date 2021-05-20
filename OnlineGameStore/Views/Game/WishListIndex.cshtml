@@ -1,0 +1,66 @@
+﻿@model IEnumerable<OnlineGameStore.Models.Game>
+    <div class="page" style="background: white;   margin-top: 25px; margin-bottom: 20px;">
+        <a href="javascript:history.back()">Back</a>
+
+        <h1>@ViewBag.Title</h1>
+
+        @*<p>
+                <a asp-action="Create">Create New</a>
+            </p>*@
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GameName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GameDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GameDownloadLink)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GamePrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GameDiscount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.GameGenre)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GameName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GameDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GameDownloadLink)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GamePrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GameDiscount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GameGenre.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.GameId">Details</a>
+                            @*<a asp-action="Edit" asp-route-id="@item.GameId">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.GameId">Delete</a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

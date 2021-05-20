@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewData["Title"] - 2D2K Games</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
+    <!-- Loading third party fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,700|" rel="stylesheet" type="text/css">
+    <link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="fonts/lineo-icon/style.css" rel="stylesheet" type="text/css">
+
+    <!-- Loading main css file -->
+    <link rel="icon" type="image/png" href="~/css/logo.png" />
+    <link rel="stylesheet" href="~/css/style.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/ie-support/html5.js"></script>
+    <script src="js/ie-support/respond.js"></script>
+    <![endif]-->
+
+
+</head>
+<body class="slider-collapse">
+    <div id="site-content">
+        <div class="site-header">
+            <div class="container">
+                <a asp-area="" asp-controller="Home" asp-action="Index" id="branding">
+                    <img src="~/css/logo.png" alt="" class="logo">
+                    <div class="logo-text">
+                        <h1 class="site-title">2D2K Games</h1>
+                        <small class="site-description" style="color: crimson;">By Gamers for Gamers</small>
+                    </div>
+                </a> <!-- #branding -->
+
+                <div class="right-section pull-right">
+                    <a href="../../../Cart" class="cart">Cart</a>
+                    <partial name="_LoginPartial" />
+                </div> <!-- .right-section -->
+
+                <div class="main-navigation">
+                    <button class="toggle-menu"><i class="fa fa-bars"></i></button>
+                    <ul class="menu">
+                        <li class="menu-item home current-menu-item"><a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/css/icon-home.png" alt="" class="icon-home"></a></li>
+                        @*<li class="menu-item"><a asp-controller="" asp-action="Privacy">Privacy</a></li>*@
+                        <li class="menu-item"><a asp-area="" asp-controller="Game" asp-action="Index">Games</a></li>
+                        <li class="menu-item"><a asp-area="" asp-controller="Profile" asp-action="Create">Profile</a></li>
+                        <li class="menu-item"><a asp-area="" asp-controller="GameGenres" asp-action="Index">Game Genres </a></li>
+                     
+                       
+                    </ul> <!-- .menu -->
+                    <div class="search-form">
+                        <label><img src="~/css/icon-search.png"></label>
+                        <input type="text" placeholder="Search...">
+                    </div> <!-- .search-form -->
+
+                    <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
+                </div> <!-- .main-navigation -->
+            </div> <!-- .container -->
+        </div> <!-- .site-header -->
+
+        <main class="main-content">
+            <div class="container">
+                @RenderBody()
+                </div>
+        </main>
+    
+
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">Information</h3>
+                            <ul class="no-bullet">
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">FAQ</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+                    <div class="col-md-2">
+                        <div class="widget">
+                            <h3 class="widget-title">My Account</h3>
+                            <ul class="no-bullet">
+                                <li><partial name="_LoginPartial" /></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Cart</a></li>
+                                <li><a href="#">Profile</a></li>
+                            </ul>
+                        </div> <!-- .widget -->
+                    </div> <!-- column -->
+
+
+                    <div class="colophon">
+                        <div class="copy">Copyright 2020 2D2K Games. Designed by HouseDevOps. All rights reserved.</div>
+                        <div class="social-links square">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div> <!-- .social-links -->
+                    </div> <!-- .colophon -->
+                   </div>
+                </div> <!-- .container -->
+            </div> <!-- .site-footer -->
+        </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

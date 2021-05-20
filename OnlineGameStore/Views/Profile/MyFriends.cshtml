@@ -1,0 +1,66 @@
+﻿@model IEnumerable<OnlineGameStore.Models.Profile>
+
+
+    <div class="page" style="background: white;   margin-top: 25px; margin-bottom: 20px;">
+        <h2 style="color: black;" class="entry-title">Gamers I Follow</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProfileName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ProfileDescription)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FavouriteGameCategory)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FavouritePlatform)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaidOrFree)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProfileName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProfileDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FavouriteGameCategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FavouritePlatform)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaidOrFree)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.ProfileId">View Profile</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="addtocart-bar" style="  margin-top: 25px; margin-bottom: 20px;">
+            <a href="javascript:history.back()">Back</a>
+        </div>
+
+    </div>

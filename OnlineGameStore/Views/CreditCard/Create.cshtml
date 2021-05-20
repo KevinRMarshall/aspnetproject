@@ -1,0 +1,112 @@
+﻿@model OnlineGameStore.Models.CreditCard
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Credit Card</h4>
+<hr />
+@if (ViewBag.ErrorMessage == null || ViewBag.ErrorMessage == "")
+{
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="AccountId" class="control-label">Account ID</label>
+                    <select asp-for="AccountId" class="form-control" asp-items="ViewBag.AccountId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CardTypeId" class="control-label">Card Type</label>
+                    <select asp-for="CardTypeId" class="form-control" asp-items="ViewBag.CardTypeId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CardNumber" class="control-label">Card Number</label>
+                    <input type="tel" asp-for="CardNumber" class="form-control" />
+                    <span asp-validation-for="CardNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CardCode" class="control-label">Card Code (CVV)</label>
+                    <input asp-for="CardCode" class="form-control" />
+                    <span asp-validation-for="CardCode" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ExpireDate" class="control-label">Expire Date</label>
+                    <input asp-for="ExpireDate" class="form-control" />
+                    <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CardHolder" class="control-label">Card Holder</label>
+                    <input asp-for="CardHolder" class="form-control" />
+                    <span asp-validation-for="CardHolder" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BillingAddress" class="control-label">Address</label>
+                    <input asp-for="BillingAddress" class="form-control" />
+                    <span asp-validation-for="BillingAddress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BillingPhone" class="control-label">Phone Number</label>
+                    <input type="tel" asp-for="BillingPhone" class="form-control" />
+                    <span asp-validation-for="BillingPhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                    <select asp-for="CountryId" class="form-control" asp-items="ViewBag.CountryId"></select>
+                </div>
+                <div class="form-group">
+
+                    <label asp-for="ProvinceStateId" class="control-label">Province/ State</label>
+                    <select asp-for="ProvinceStateId" class="form-control" asp-items="ViewBag.ProvinceStateId"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <label style="color:darkred">@ViewBag.ErrorMessage</label>
+}
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $("#CountryId").on("change", function () {
+        var categoryId = $(this).val();
+        $list = $("#ProvinceStateId");
+        var url = "/CreditCard/getCities'";
+
+    $.ajax({
+        url: '/CreditCard/getCities',
+        type: 'Get',
+        data: { id: categoryId }, //id of the state which is used to extract cities
+        traditional: true,
+        success: function (result) {
+            $list.empty();
+            $.each(result, function (i, item) {
+                $list.append('<option value="'+ item.value +'"> ' + item.text + '</option>');
+            });
+        },
+        error: function () {
+            alert("Something went wrong call the police");
+        }
+    });
+  });
+});
+</script>
+
+
+}

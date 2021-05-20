@@ -1,0 +1,146 @@
+﻿@model OnlineGameStore.Models.Profile
+
+<div class="main-navigation">
+    <button class="toggle-menu"><i class="fa fa-bars"></i></button>
+    <ul class="menu">
+
+        @if (User.Identity.Name == ViewBag.OwnerId)
+        {
+
+            <li class="menu-item"><a asp-area="" asp-controller="Profile" asp-action="Edit" asp-route-id="@Model.ProfileId">Edit Profile</a></li>
+            <li class="menu-item"><a asp-area="" asp-controller="Game" asp-action="WishListIndex">My Wish List</a></li>
+            <li class="menu-item"><a asp-area="" asp-controller="Profile" asp-action="MyFriends">Following</a></li>
+            <li class="menu-item"><a asp-area="" asp-controller="Profile" asp-action="FindFriends">Find Gamers</a></li>
+            <li class="menu-item"><a asp-area="" asp-controller="CreditCard" asp-action="Index" >Credit Card</a></li>
+        }
+        else
+        {
+            <li class="menu-item"><a asp-area="" asp-controller="Game" asp-action="WishListIndex" asp-route-userId="@Model.ProfileId">View Wish List</a></li>
+        }
+    </ul> <!-- .menu -->
+    <div class="mobile-navigation"></div> <!-- .mobile-navigation -->
+</div> <!-- .main-navigation -->
+
+<div class="page">
+    <div class="entry-content">
+        <h2 style="color: black;" class="entry-title">  @Html.DisplayFor(model => model.ProfileName)</h2>
+
+        <div class="profileinfo-bar">
+            <hr />
+            <dl>
+                <div class="profileItem-bar">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ProfileDescription)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ProfileDescription)
+                    </dd>
+                </div>
+                <div class="profileItem-bar">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Gender)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Gender)
+                    </dd>
+                </div>
+                <div class="profileItem-bar">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FavouriteGameCategory)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FavouriteGameCategory)
+                    </dd>
+                </div>
+                <div class="profileItem-bar">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FavouritePlatform)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.FavouritePlatform)
+                    </dd>
+                </div>
+                <div class="profileItem-bar">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PaidOrFree)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PaidOrFree)
+                    </dd>
+                </div>
+                <div class="profileItem-bar">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Country)
+                    </dd>
+                </div>
+                <div class="profileItem-bar">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Birthdate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Birthdate)
+                    </dd>
+                </div>
+                @if (User.Identity.Name == ViewBag.OwnerId)
+                {
+                    <div class="profileItem-bar">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ParentalCode)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.ParentalCode)
+                        </dd>
+                    </div>
+                    <div class="profileItem-bar">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </dd>
+                    </div>
+                    <div class="profileItem-bar">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Account)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Account.AspuserId)
+                        </dd>
+                    </div>
+                }
+            </dl>
+        </div>
+
+        <div class="addtocart-bar">
+            <a href="javascript:history.back()">Back</a> |
+            @if (User.Identity.Name != ViewBag.OwnerId)
+            {
+                if (ViewBag.FriendId != "")
+                {
+                    @using (Html.BeginForm("RemoveFriend", "ProfileController", FormMethod.Post))
+                    {
+                        <input type="submit" value="Unfollow" asp-route-receiverId="@Model.AccountId" asp-action="RemoveFriend" />
+                    }
+                }
+                else
+                {
+                    @using (Html.BeginForm("AddFriend", "ProfileController", FormMethod.Post))
+                    {
+                        <input type="submit" value="Follow" asp-route-receiverId="@Model.AccountId" asp-action="AddFriend" />
+                    }
+                }
+
+                @*<a asp-action="Edit" asp-route-id="@Model.ProfileId">Edit |</a>
+
+                    <a asp-area="" asp-controller="Profile" asp-action="MyFriends"> Following |</a>
+
+                    <a asp-area="" asp-controller="Profile" asp-action="FindFriends">Find Gamers |</a>*@
+            }
+
+        </div>
+
+    </div>
+</div>
